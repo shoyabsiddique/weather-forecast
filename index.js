@@ -1,3 +1,13 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const burgerMenu = document.getElementById("burger-menu");
+    const navContainer = document.getElementById("nav-container");
+
+    burgerMenu.addEventListener("click", function () {
+        // Toggle the "active" class to show/hide the navigation menu
+        navContainer.classList.toggle("active");
+    });
+});
+
 function fetchWeatherData(location) {
     const apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=YS5JY9PCBGA8DBQL48B2TAY3E`;
     console.log(apiUrl);

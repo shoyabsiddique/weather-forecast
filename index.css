@@ -6,6 +6,26 @@ p {
     padding: 0;
 }
 
+/* Default styles for the navigation menu */
+#nav-container {
+    display: block;
+}
+
+/* Styles for the burger menu icon */
+#burger-menu {
+    display: none;
+    /* Hide the burger menu icon by default */
+    cursor: pointer;
+    padding: 10px;
+}
+
+.bar {
+    width: 30px;
+    height: 3px;
+    background-color: #333;
+    margin: 6px 0;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -190,7 +210,7 @@ main {
     text-align: center;
 }
 
-
+/* 
 footer {
     background-color: #111;
     position: fixed;
@@ -202,11 +222,39 @@ footer {
     color: white;
 
     justify-content: center;
+} */
+
+section {
+    margin-bottom: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
 }
 
+h2 {
+    color: #fff;
+}
+
+address {
+    font-style: normal;
+}
+
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
 
 @media (max-width: 600px) {
 
+    #nav-container {
+        display: none;
+    }
+
+    #burger-menu {
+        display: block;
+    }
 
     header {
         background-color: #111;
