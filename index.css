@@ -256,6 +256,10 @@ footer {
         display: block;
     }
 
+    .header-right {
+        display: block;
+    }
+
     header {
         background-color: #111;
 
@@ -313,6 +317,7 @@ footer {
 
     .search-bar {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-evenly;
     }
 }

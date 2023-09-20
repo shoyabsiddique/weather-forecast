@@ -7,6 +7,138 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Futuristic Weather Dashboard</title>
     <link rel="stylesheet" href="index.css">
+    <style>
+        /* Your mobile responsive CSS here */
+
+        /* Reset some default styles */
+        body,
+        h1,
+        h2,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background-color: #222;
+            color: #fff;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #111;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .header-left li {
+            margin-right: 20px;
+        }
+
+        .header-left a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        /* Hamburger menu styles */
+        #burger-menu {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 600px) {
+            .header-left ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                background-color: #111;
+                width: 100%;
+            }
+
+            #burger-menu {
+                display: block;
+            }
+
+            .header-left ul.active {
+                display: flex;
+            }
+
+            .header-left li {
+                margin: 0;
+                padding: 10px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .header-left a {
+                display: block;
+            }
+
+            .header-right {
+                display: block;
+                font-size: 16px;
+            }
+
+            .header-right h1 {
+                display: block;
+                font-size: 28px;
+            }
+
+            #burger-menu.active .bar:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            #burger-menu.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            #burger-menu.active .bar:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .search-bar {
+                flex-direction: row;
+                justify-content: space-evenly;
+            }
+
+        }
+    </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -14,34 +146,28 @@
 
 <body onload="fetchWeatherData('mumbai')">
     <header>
-        <header>
-            <div class="header-left">
-                <nav>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#charts">Charts</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                    </ul>
-                </nav>
-                <div id="burger-menu">
-                    <div class="bar"><a href="#home">Home</a></div>
-                    <div class="bar"><a href="#home">Charts</a></div>
-                    <div class="bar"><a href="#home">Contact Us</a></div>
-                    <div class="bar"><a href="#home">About Us</a></div>
-                </div>
+        <div class="header-left">
+            <nav>
+                <ul id="menu-items">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#charts">Charts</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div id="burger-menu" onclick="toggleMenu()">
+                <div class="bar" style="color: #fff;"></div>
+                <div class="bar" style="color: #fff;"></div>
+                <div class="bar" style="color: #fff;"></div>
             </div>
-            <div class="header-right">
-                <h1>Futuristic Weather Dashboard</h1>
-                <p>Real-time Weather Information</p>
-            </div>
-        </header>
-
+        </div>
+        <div class="header-right">
+            <h1>Weather Dashboard</h1>
+            <p>Real-time Weather Information</p>
+        </div>
     </header>
 
-    <header>
 
-    </header>
     <main>
         <div class="search-bar">
             <input type="text" id="location-input" placeholder="Enter City">
