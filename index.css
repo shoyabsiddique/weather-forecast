@@ -1,0 +1,232 @@
+/* Reset some default styles */
+body,
+h1,
+h2,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /* background-image: url("assets/night1.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; */
+    width: 100%;
+    height: 100%;
+}
+
+.forecast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 30%;
+}
+
+.forecast-day {
+    display: flex;
+    overflow: hidden;
+    max-width: 80%;
+}
+
+.forecast-day {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#prevBtn {
+    margin-right: 10px;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    /* Dark background color */
+    color: #fff;
+    display: block;
+    position: absolute;
+    /* Text color */
+}
+
+header {
+    background-color: #111;
+    /* background-blend-mode: lighten;
+    opacity: 0.5; */
+    /* Header background color */
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.weather-card {
+    background-color: #333;
+    /* Card background color */
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.weather-icon {
+    font-size: 48px;
+}
+
+.weather-info {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.forecast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.forecast-day {
+    background-color: #444;
+    /* Forecast card background color */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px;
+    flex-grow: 1;
+}
+
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#location-input {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    border: none;
+    width: 60%;
+    border-radius: 5px;
+}
+
+#search-button {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 20%;
+    background-color: #555;
+    /* Button background color */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.toggle-units {
+    text-align: center;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #111;
+    /* Footer background color */
+    /* text-align: center; */
+    /* padding: 10px; */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    /* background-color: red; */
+    color: white;
+    /* text-align: center; */
+    justify-content: center;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    /* Add this CSS to style your header */
+
+    header {
+        background-color: #111;
+        /* Header background color */
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        /* Make the header a positioned container */
+    }
+
+    header h1 {
+        font-size: 36px;
+    }
+
+    /* Add this CSS for the cloud image */
+    .badal {
+        position: relative;
+        z-index: 1;
+        /* Position the image absolutely within the header */
+        top: 20px;
+        /* Adjust the top position as needed */
+        right: 20px;
+        /* Adjust the right position as needed */
+        width: 100px;
+        /* Set the width of the image */
+        height: 50px;
+        /* Maintain the image's aspect ratio */
+    }
+
+    /* .badal {
+        width: 100%;
+        align-content: flex-end;
+        display: flex;
+        flex-direction: row;
+    } */
+
+    .weather-card {
+        flex-direction: column;
+    }
+
+    .weather-icon {
+        margin-bottom: 20px;
+    }
+
+    .weather-info {
+        margin-top: 20px;
+    }
+
+    .forecast {
+        flex-direction: column;
+    }
+
+    .forecast-day {
+        margin: 10px 0;
+    }
+
+    .search-bar {
+        display: flex;
+        flex-direction: column;
+    }
+}

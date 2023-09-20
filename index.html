@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Futuristic Weather Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <script>
+        function fetchWeatherData(location) {
+            const apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=YS5JY9PCBGA8DBQL48B2TAY3E`;
+            console.log(apiUrl);
+            fetch(apiUrl)
+                .then(response => {
+                    console.log(response.status);
+                    if (response.status != 200) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    updateWeatherUI(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+        }
+        var days;
+        function updateWeatherUI(data) {
+            const currentWeather = data.current_weather;
+            const hourlyData = data.hourly;
+            this.days = data.days;
+            document.getElementById("title").innerText = `Current Weather (${data.resolvedAddress})`;
+            // Update current weather information
+            document.getElementById("temperature").innerText = `${((parseInt(days[0].temp) - 32) * 5 / 9).toFixed(2)} °C`;
+            document.getElementById("condition").innerText = `${days[0].conditions}`;
+            document.getElementById("sunrise").innerText = `${days[0].sunrise}`;
+            document.getElementById("sunset").innerText = `${days[0].sunset}`;
+            // Assuming your data includes timestamps in a format like "00:00:00"
+            // Convert the timestamps to moment objects
+            const timestamps = data.days[0].hours.map(item => moment(item.datetime, "HH:mm:ss").format());
+            const temperatures = data.days[0].hours.map(item => ((parseInt(item.temp) - 32) * 5 / 9).toFixed(2));
+            var canvas = document.getElementById('myCanvas');
+
+            // Check if the canvas element exists
+            if (canvas) {
+                // Remove the canvas element from the DOM
+                canvas.parentNode.removeChild(canvas);
+            }
+
+            // Create a new canvas element
+            const newCanvas = document.createElement('canvas');
+            newCanvas.id = 'myCanvas'; // Assign an ID if needed
+            newCanvas.width = 400; // Set the width
+            newCanvas.height = 200; // Set the height
+
+            // Add the new canvas element to the DOM (e.g., to a specific container)
+            const container = document.getElementById('container'); // Replace 'container' with the ID of the container element where you want to add the canvas
+            container.appendChild(newCanvas);
+            canvas = document.getElementById('myCanvas');
+            const ctx = canvas.getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'line', // Specify the chart type (bar chart)
+                data: {
+                    labels: timestamps, // X-axis labels
+                    datasets: [{
+                        label: 'My Chart',
+                        data: temperatures, // Y-axis values
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
+                        borderColor: 'rgba(75, 192, 192, 1)', // Border color
+                        borderWidth: 1, // Border width
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true // Start Y-axis at zero
+                        }
+                    }
+                }
+            });
+            // Clear the existing forecast data
+            const forecastContainer = document.querySelector(".forecast");
+            forecastContainer.innerHTML = '';
+
+            // Populate the forecast data
+            days.forEach((dayData, index) => {
+                const dayName = `Day ${index + 1}`;
+                const { tempmax, tempmin, datetime, humidity, windgust, windspeed, pressure, solarradiation, solarenergy } = dayData;
+
+                // Create a div for the forecast day
+                const forecastDayDiv = document.createElement('div');
+                forecastDayDiv.classList.add('forecast-day');
+
+                // Create a div for the day name
+                const dayNameDiv = document.createElement('div');
+                dayNameDiv.classList.add('day');
+                dayNameDiv.textContent = dayName;
+
+                // Create a div for the weather icon
+                const iconDiv = document.createElement('div');
+                iconDiv.classList.add('icon');
+                iconDiv.innerHTML = `Date: ${datetime}`;
+                const humidityDiv = document.createElement('div');
+                humidityDiv.classList.add('humidity');
+                humidityDiv.innerHTML = `Humidity: ${humidity} %`;
+                const windgDiv = document.createElement('div');
+                windgDiv.classList.add('windgust');
+                windgDiv.innerHTML = `Windgust: ${windgust} km/hr`;
+                const windsDiv = document.createElement('div');
+                windsDiv.classList.add('windspeed');
+                windsDiv.innerHTML = `Wind Speed: ${windspeed} km/hr`;
+                const pressureDiv = document.createElement('div');
+                pressureDiv.classList.add('pressure');
+                pressureDiv.innerHTML = `Pressure: ${pressure} psi`;
+                const solarrDiv = document.createElement('div');
+                solarrDiv.classList.add('solarR');
+                solarrDiv.innerHTML = `Solar Radiation: ${solarradiation} W/m<sup>2</sup>`;
+                const solareDiv = document.createElement('div');
+                solareDiv.classList.add('solarenergy');
+                solareDiv.innerHTML = `Solar Energy: ${solarenergy} J/m<sup>2</sup>`;
+                // Set the icon URL using dayData.icon
+
+                // Create a div for temperature
+                const temperatureDiv = document.createElement('div');
+                temperatureDiv.classList.add('temperature');
+                temperatureDiv.innerHTML = `High: ${((parseInt(days[0].tempmax) - 32) * 5 / 9).toFixed(2)} °C | Low: ${((parseInt(days[0].tempmin) - 32) * 5 / 9).toFixed(2)} °C`;
+
+
+                // Append the created divs to the forecastDayDiv
+                forecastDayDiv.appendChild(dayNameDiv);
+                forecastDayDiv.appendChild(iconDiv);
+                forecastDayDiv.appendChild(temperatureDiv);
+                forecastDayDiv.appendChild(humidityDiv);
+                forecastDayDiv.appendChild(windgDiv);
+                forecastDayDiv.appendChild(windsDiv);
+                forecastDayDiv.appendChild(pressureDiv);
+                forecastDayDiv.appendChild(solarrDiv);
+                forecastDayDiv.appendChild(solareDiv);
+
+                // Append the forecastDayDiv to the forecastContainer
+                forecastContainer.appendChild(forecastDayDiv);
+            });
+            createCarousel(".forecast", "#prevBtn", "#nextBtn");
+        }
+
+        function handleSearch() {
+            const locationInput = document.getElementById("location-input");
+            const location = locationInput.value;
+            // var url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=YS5JY9PCBGA8DBQL48B2TAY3E`;
+            fetchWeatherData(location);
+        }
+
+        function createCarousel(containerSelector, prevButtonSelector, nextButtonSelector) {
+            const container = document.querySelector(containerSelector);
+            const prevButton = document.querySelector(prevButtonSelector);
+            const nextButton = document.querySelector(nextButtonSelector);
+            const items = Array.from(container.children); // Assuming each child is an item to display in the carousel
+            let currentIndex = 0;
+
+            function showItem(index) {
+                items.forEach((item, i) => {
+                    if (i === index) {
+                        item.style.display = "block"; // Display the current item
+                        document.getElementById("desc").innerText = `${days[i].description}`;
+                    } else {
+                        item.style.display = "none"; // Hide other items
+                    }
+                });
+            }
+
+            prevButton.addEventListener("click", function () {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                showItem(currentIndex);
+            });
+
+            nextButton.addEventListener("click", function () {
+                currentIndex = (currentIndex + 1) % items.length;
+                showItem(currentIndex);
+            });
+
+            // Show the first item initially
+            showItem(currentIndex);
+        }
+
+        // Usage example:
+
+
+    </script>
+</head>
+
+<body onload="fetchWeatherData('mumbai')">
+    <header>
+        <h1>Futuristic Weather Dashboard</h1>
+        <p>Real-time Weather Information</p>
+    </header>
+    <main>
+        <div class="search-bar">
+            <input type="text" id="location-input" placeholder="Enter City">
+            <button id="search-button" onclick="handleSearch()">Search</button>
+        </div>
+        <div class="weather-card">
+            <div class="weather-icon">
+            </div>
+            <div class="weather-info">
+                <h2 id="title">Current Weather</h2>
+                <p>Temperature: <span id="temperature">Loading...</span></p>
+                <p>Condition: <span id="condition">Loading...</span></p>
+                <p>Sunrise: <span id="sunrise">Loading...</span></p>
+                <p>Sunset: <span id="sunset">Loading...</span></p>
+            </div>
+        </div>
+        <div id="desc">
+        </div>
+        <div class="forecast" id="forecast">
+            <h2>3-Day Weather Forecast</h2>
+            <div class="forecast-day">
+                <div class="wrapper">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button id="prevBtn" class="carousel-button">Previous</button>
+            <button id="nextBtn" class="carousel-button">Next</button>
+        </div>
+        <!-- <br> -->
+        <div id="container">
+
+            <canvas id="myChart" width="400" height="200"></canvas>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Futuristic Weather Dashboard</p>
+    </footer>
+</body>
+
+</html>
