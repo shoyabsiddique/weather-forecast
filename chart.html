@@ -4,40 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Weather Charts</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="chart.js"></script>
-    <style>
-        /* Style for the chart containers */
-        .chart-container {
-            display: inline-block;
-            width: 30%;
-            /* Adjust the width as needed */
-            margin: 10px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="chart-container">
-        <h2>Chart 1: Temperature Chart</h2>
-        <p>Description: This chart represents temperature changes over time.</p>
-        <canvas id="temperatureChart" width="400" height="200"></canvas>
+    <header>
+        <div class="header-left">
+            <nav>
+                <ul id="menu-items">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="chart.html">Charts</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div id="burger-menu" onclick="toggleMenu()">
+                <div class="bar" style="color: #fff;"></div>
+                <div class="bar" style="color: #fff;"></div>
+                <div class="bar" style="color: #fff;"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <h1>Weather Dashboard</h1>
+            <p>Real-time Weather Information</p>
+        </div>
+    </header>
+    <div class="search-bar">
+        <input type="text" id="location-input" placeholder="Enter City">
+        <button id="search-button" onclick="handleSearch()">Search</button>
     </div>
-    <div class="chart-container">
-        <h2>Chart 2: Precipitation Chart</h2>
-        <p>Description: This chart represents precipitation data over time.</p>
-        <canvas id="precipitationChart" width="400" height="200"></canvas>
+    <div id="title">
+
     </div>
-    <div class="chart-container">
-        <h2>Chart 3: Wind Speed Chart</h2>
-        <p>Description: This chart represents wind speed changes over time.</p>
-        <canvas id="windSpeedChart" width="400" height="200"></canvas>
+    <div id="charts">
+        <div class="chart-container">
+            <canvas id="tempChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="humidityChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="windgustChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="pressureChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="severeriskChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="dewChart"></canvas>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Reset some default styles */
+        body,
+        h1,
+        h2,
+        p,
+        ul,
+        li,
+        footer {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: row;
+            min-height: 100vh;
+        }
+
+        .left-container {
+            background-color: #333333;
+            width: 40%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #FFFFFF;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+        }
+
+        .header p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .follow-us {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .follow-us-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-icon {
+            font-size: 32px;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            color: #007BFF;
+            background-color: #333333;
+            transition: opacity 0.2s ease;
+        }
+
+        .social-icon:hover {
+            opacity: 0.8;
+        }
+
+        .right-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #1E1E1E;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* padding: 20px; */
+            border-radius: 5px;
+            width: 60%;
+            color: #FFFFFF;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 600px) {
+            .main-container {
+                flex-direction: column-reverse;
+            }
+
+            .left-container {
+                width: 100%;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .right-container {
+                width: 100%;
+                /* padding: 20px; */
+            }
+
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                width: 80%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <nav>
+                <ul id="menu-items">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chart.html">Charts</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div id="burger-menu" onclick="toggleMenu()">
+                <div class="bar" style="color: #fff;"></div>
+                <div class="bar" style="color: #fff;"></div>
+                <div class="bar" style="color: #fff;"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <h1>Weather Dashboard</h1>
+            <p>Real-time Weather Information</p>
+        </div>
+    </header>
+    <div class="main-container">
+        <div class="left-container">
+            <div class="header">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you!</p>
+            </div>
+
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> Website: <a
+                            href="https://shoyabsiddique@github.io/weather-forecast" target="_blank"
+                            style="color: #FFFFFF;">https://shoyabsiddique@github.io/weather-forecast</a>
+                    </li>
+                    <li><i class="fas fa-phone"></i> Phone: +911234567890</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Sardar Patel Insitute of Technology</li>
+                </ul>
+            </div>
+
+            <div class="follow-us">
+                <div class="follow-us-title">Follow Us</div>
+                <div class="icons">
+                    <a href="https://www.facebook.com/yourweatherforecast" target="_blank"
+                        class="social-icon facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/yourweather" target="_blank" class="social-icon twitter"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/yourweatherpics" target="_blank" class="social-icon instagram"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 Your Company Name</p>
+            </div>
+        </div>
+        <div class="right-container">
+            <h1>Contact Us</h1>
+            <form action="mailto:shoyab.sidhique23.com" method="post" enctype="text/plain">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

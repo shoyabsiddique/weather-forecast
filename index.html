@@ -8,26 +8,6 @@
     <title>Futuristic Weather Dashboard</title>
     <link rel="stylesheet" href="index.css">
     <style>
-        /* Your mobile responsive CSS here */
-
-        /* Reset some default styles */
-        body,
-        h1,
-        h2,
-        p {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            background-color: #222;
-            color: #fff;
-        }
-
         /* Header styles */
         header {
             background-color: #111;
@@ -137,6 +117,12 @@
                 justify-content: space-evenly;
             }
 
+            #search-button {
+                max-height: 3rem;
+                min-width: 6rem;
+                text-align: center;
+            }
+
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -150,8 +136,8 @@
             <nav>
                 <ul id="menu-items">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#charts">Charts</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="chart.html">Charts</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="about.html">About Us</a></li>
                 </ul>
             </nav>
@@ -174,8 +160,6 @@
             <button id="search-button" onclick="handleSearch()">Search</button>
         </div>
         <div class="weather-card">
-            <div class="weather-icon">
-            </div>
             <div class="weather-info">
                 <h2 id="title">Current Weather</h2>
                 <p>Temperature: <span id="temperature">Loading...</span></p>
