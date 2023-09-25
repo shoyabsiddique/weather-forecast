@@ -88,6 +88,7 @@ header {
 .header-right {
     text-align: right;
     color: #fff;
+    padding: 20px;
 }
 
 h1 {
@@ -143,6 +144,7 @@ h1 {
     .header-right {
         display: block;
         font-size: 16px;
+        padding: 20px;
     }
 
     .header-right h1 {
